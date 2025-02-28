@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Nyaa Extractor</title>
+</head>
+<body>
+    <h1>擷取磁力連結</h1>
+    <form id="search-form">
+        <label for="query">搜尋 URL:</label>
+        <input type="text" id="query" name="query" required>
+        <button type="submit">擷取</button>
+    </form>
+    <div id="result"></div>
+    <button id="copy-button" style="display:none;">複製所有磁力連結</button>
+    <script>
+        document.getElementById('search-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const query = document.getElementById('query').value;
+            fetch(`/nyaa_extractor/get_magnets/?query=${query}`)
+                .then(response => response.json())
+                .then(data => {
+                    const resultDiv = document.getElementById('result');
+                    resultDiv.innerHTML = '';
+                    const magnets = data.magnets;
+                    const magnetLinks = [];
+                    magnets.forEach(magnet => {
+                        const title = document.createElement('p');
+                        title.textContent = magnet.title;
+                        resultDiv.appendChild(title);
+                        magnetLinks.push(magnet.magnet);
+                    });
+                    const copyButton = document.getElementById('copy-button');
+                    copyButton.style.display = 'block';
+                    copyButton.addEventListener('click', function() {
+                        const magnetsStr = magnetLinks.join('\n');
+                        navigator.clipboard.writeText(magnetsStr).then(() => {
+                            alert('已複製');
+                        }).catch(err => {
+                            console.error('Failed to copy: ', err);
+                        });
+                    });
+                });
+        });
+    </script>
+</body>
+</html>
