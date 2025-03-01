@@ -1,10 +1,13 @@
 from django.shortcuts import render
 from .services import fetch_magnet
 from django.http import JsonResponse
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def ui(request):
     return render(request, "ui.html")
 
+@login_required
 def get_magnets(request):
     query = request.GET.get('query')
     p = request.GET.get('p')
