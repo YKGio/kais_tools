@@ -3,7 +3,7 @@ from .services import fetch_magnet
 from django.http import JsonResponse
 
 def ui(request):
-    return render(request, "ui.html")
+    return render(request, "nyaa_extractor/ui.html")
 
 def get_magnets(request):
     query = request.GET.get('query')
