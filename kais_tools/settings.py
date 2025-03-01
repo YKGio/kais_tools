@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-fk+k9ul%6g&@r&sbsziieaqdsfa1)o$3!z^b%m*5e5#4j5^48j
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'lowpen.pythonanywhere.com',
+    'kais-tools.onrender.com',
     'localhost',
 ]
 
