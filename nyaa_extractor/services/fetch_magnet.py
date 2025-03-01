@@ -4,10 +4,6 @@ from bs4 import BeautifulSoup
 def call(url):
     response = requests.get(url)
     html = response.text
-
-    # Save the HTML to a file
-    with open("output.html", "w", encoding="utf-8") as file:
-        file.write(html)
     # Parse the HTML using BeautifulSoup
     soup = BeautifulSoup(html, "html.parser")
 
