@@ -26,4 +26,4 @@ def call(url):
 
     return result
 
-call(" ")
+call("https://sukebei.nyaa.si/?f=0&c=0_0&q=")
